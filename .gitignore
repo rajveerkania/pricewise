@@ -1,0 +1,22 @@
+# gnore compiled Python files
+*/__pycache__/*
+# Ignore the virtual environment
+venv/
+
+# Ignore database files
+db.sqlite3
+
+# Ignore static files
+staticfiles/
+
+# Ignore media files
+media/
+
+#Ignore testing files
+testing/*
+
+# Ignore the secret key
+*.secret
+
+# Ignore any other files or directories that should not be version controlled
+I

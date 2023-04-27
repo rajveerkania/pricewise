@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>product card</title>
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>products</h1>
+      </div>
+      <div class="products">
+        {% for product in data %}
+        <div class="product">
+          <div class="image">
+            <img src="{{product.0.0}}" alt="" />
+          </div>
+          <div class="namePrice">
+            <h3>
+              {{ product.0.1|slice:"0:50" }}{% if product.0.1|length > 50 %}...{%endif %}
+            </h3>
+            <span>₹{{product.0.2}}</span>
+          </div>
+          <p style="margin-top: 10px">
+            ({{product.0.3}}
+            <i class="fa-solid fa-star" style="color: #f67034"></i> out of 5)
+            <img
+              src="{{product.0.4}}"
+              alt="company-logo"
+              width="25px"
+              height="25px"
+              style="margin-left: 10px"
+            />
+          </p> 
+        </div>
+        <div class="product">
+          <div class="image">
+            <img src="{{product.1.0}}" alt="" />
+          </div>
+          <div class="namePrice">
+            <h3>{{product.1.1}}</h3>
+            <span>{{product.1.2}}</span>
+          </div>
+          <p>
+            ({{product.1.3}}
+            <i class="fa-solid fa-star" style="color: #f67034"></i> out of 5)
+            <img
+              src="{{product.1.4}}"
+              alt="company-logo"
+              width="25px"
+              height="25px"
+              style="margin-left: 10px; margin-top: 10px"
+            />
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
