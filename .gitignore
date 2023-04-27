@@ -1,5 +1,6 @@
 # gnore compiled Python files
 */__pycache__/*
+
 # Ignore the virtual environment
 venv/
 
@@ -13,10 +14,10 @@ staticfiles/
 media/
 
 #Ignore testing files
-testing/*
+testing/
 
 # Ignore the secret key
 *.secret
 
 # Ignore any other files or directories that should not be version controlled
-I
+.vscode/
