@@ -28,10 +28,9 @@
         <img class="logo" src="{% static 'img/logo.png' %}" />
       </div>
     </div>
-    <form method="post" action="result.html">
+    <form method="get" action="result.html">
       <div class="box">
-        {% csrf_token %}
-        <input type="text" name="search" placeholder="Search..." />
+        <input type="text" name="q" placeholder="Search..." />
         <a href="#">
           <i class="fa-solid fa-magnifying-glass"></i>
         </a>

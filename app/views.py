@@ -2,149 +2,180 @@ from django.shortcuts import render
 import requests
 import time
 from bs4 import BeautifulSoup
+from django.core.paginator import Paginator
 
-def index(request):
+
+def homeView(request):
     return render(request, 'index.html')
 
-def result(request):
-    product_name = request.POST.get("search")
-    
-    #------------Flipkart's------------#
-    
-    furl1 = 'https://www.flipkart.com/search?q='
-    temp_url = request.POST.get("search")
-    temp_url=product_name
-    furl2 = str(temp_url)
-    furl2 = furl2.replace(" ", "%20")
-    furl = furl1 + furl2
-    
-    
-    
-    fresponse = requests.get(furl)
-    fsoup = BeautifulSoup(fresponse.content, 'html.parser')
-    check = fsoup('div', {'class': '_2kHMtA'})
-    if len(check) == 0:
-        product_containers = fsoup.find_all('div', {'class': '_4ddWXP'})
-        
-        title = []
-        price = []
-        rating = []
-        image = []
-        logo = []
-        url= []
-        
-        
-        for container in product_containers:
-            ttl = container.find('a', {'class': 's1Q9rs'}).text
 
-            prc = container.find('div', {'class': '_30jeq3'}).text
+def resultView(request):
+    query = request.GET.get("q")
+    sort_by = request.GET.get("s") if request.GET.get('s') else "relevanceblender"
 
-            rat = container.find('div', {'class': '_3LWZlK'}).text if container.find('div', {
-            'class': '_3LWZlK'}) else 'N\A'
-            
-            img = container.find('img', {'class': '_396cs4'}).get('src') if container.find('img', {'class': '_396cs4'}) else 'N\A'
-            
-            lg = "https://assets.gadgets360cdn.com/kostprice/assets/img/fk_40_40.png"
-            
-            ul = 
-                
-            title.append(ttl)
-            price.append(prc)
-            rating.append(rat)
-            image.append(img)
-            logo.append(lg)
-            
-            
-    else:
-        product_containers = fsoup.find_all('div', {'class': '_2kHMtA'})
-        
-        title = []
-        price = []
-        rating = []
-        image = []
-        logo = []
-        url = []
-        
-        for container in product_containers:
-            ttl = container.find('div', {'class': '_4rR01T'}).text
-            
-            prc = container.find('div', {'class': '_30jeq3 _1_WHN1'}).text
+    fdata = flipkartResults(query, sort_by)
+    adata = amazonResults(query, sort_by)
 
-            rat = container.find('div', {'class': '_3LWZlK'}).text
-            
-            img = container.find('img', {'class': '_396cs4'}).get('src') if container.find('img', {'class': '_396cs4'}) else 'N\A'
-            
-            lg = "https://assets.gadgets360cdn.com/kostprice/assets/img/fk_40_40.png"
-            
-            ul = container.find('a', {'class': '_1fQZEK'}).get('href')
-            
-            title.append(ttl)
-            price.append(prc)
-            rating.append(rat)
-            image.append(img)
-            logo.append(lg)
-            
-         
-         
-    fdata = zip(image, title, price, rating, logo)
-    
-    # ------------Amazon's------------#
-    
-    aurl1 = 'https://www.amazon.in/s?k='
-    aurl2 = furl2.replace("%20", "+")
-    aurl = aurl1 + aurl2 
-    
-    headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    products = list(zip(adata, fdata))
+
+    paginator = Paginator(products, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj,
+        'query': query,
+        'sort_by': sort_by,
     }
-    
-    aresponse = requests.get(aurl, headers=headers)
-    
-    asoup = BeautifulSoup(aresponse.text, 'lxml')
-    
-    adict = {"Title": [], "Price": [], "Rating": []}
-    
-    products = asoup.find_all('div', {
-    'class': 'sg-col-20-of-24 s-result-item s-asin sg-col-0-of-12 sg-col-16-of-20 sg-col s-widget-spacing-small sg-col-12-of-16'}) if asoup.find_all(
-    'div', {
-        'class': 'sg-col-20-of-24 s-result-item s-asin sg-col-0-of-12 sg-col-16-of-20 sg-col s-widget-spacing-small sg-col-12-of-16'}) else asoup.find_all(
-    'div', {
-        'class': 'sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20'})
-
-
-    title = []
-    price = []
-    rating = []
-    image = []
-    logo = []
-        
-    for product in products:
-        ttl = product.find('a',
-                         {'class': 'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'}).text
-        
-        if (product.find('span', {'class': 'a-price-whole'})):
-            prc = product.find('span', {'class': 'a-price-whole'}).text
-        elif (product.find('span', {'class': 'a-size-small'})):
-            prc = product.find('span', {'class': 'a-size-small'}).text
-        else:
-            prc = "NA"
-            
-        rat = product.find('span', {'class': 'a-icon-alt'}).text.split()[0] if product.find('span', {'class': 'a-icon-alt'}) else "Currently unavailable"
-        
-        img = product.find('img', {'class': 's-image'}).get('src') if product.find('img', {'class': 's-image'}).get('src') else "Currently unavailable"
-        
-        lg = "https://assets.gadgets360cdn.com/kostprice/assets/img/amazon_40_40.png"
-        
-        
-        title.append(ttl)
-        price.append(prc)
-        rating.append(rat)
-        image.append(img)
-        logo.append(lg)
-        
-        
-    adata = zip(image, title, price, rating, logo)
-
-    zipped = zip(adata, fdata)    
-    context = {'data': zipped}        
     return render(request, 'result.html', context)
+
+
+def flipkartResults(query, sort_by):
+    titles = []
+    prices = []
+    images = []
+    links = []
+    ratings = []
+    logos = []
+
+    if query:
+        if sort_by == 'relevanceblender':
+            sort_by = 'relevance'
+        elif sort_by == 'price-asc-rank':
+            sort_by = 'price_asc'
+        elif sort_by == 'price-desc-rank':
+            sort_by = 'price_desc'
+        elif sort_by == 'date-desc-rank':
+            sort_by = 'recency_desc'
+        url = 'https://www.flipkart.com/search?q=' + query + "&sort=" + sort_by
+
+        headers = {
+            'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        }
+        response = requests.get(url, headers=headers)
+
+        # parse the HTML content of the response using BeautifulSoup
+        soup = BeautifulSoup(response.text, 'lxml')
+
+        products = soup.find_all('div', {'class': '_2kHMtA'}) if soup.find_all(
+            'div', {'class': '_2kHMtA'}) else soup.find_all(
+                'div', {'class': '_4ddWXP'})
+
+        for product in products:
+            title = product.find('div', {
+                'class': '_4rR01T'
+            }).get_text() if product.find(
+                'div', {'class': '_4rR01T'}) else product.find(
+                    'a', {
+                        'class': 's1Q9rs'
+                    }).get_text()
+            price = product.find('div', {
+                'class': '_30jeq3 _1_WHN1'
+            }).get_text() if product.find(
+                'div', {'class': '_30jeq3 _1_WHN1'}) else product.find(
+                    'div', {
+                        'class': '_30jeq3'
+                    }).get_text()
+            rating = product.find('div', {
+                'class': '_3LWZlK'
+            }).get_text() if product.find('div',
+                                          {'class': '_3LWZlK'}) else "N\A"
+            image = product.find('img', {'class': '_396cs4'}).get('src')
+            link = product.find('a', {
+                'class': '_1fQZEK'
+            }).get('href') if product.find(
+                'a', {'class': '_1fQZEK'}) else product.find(
+                    'a', {
+                        'class': '_2rpwqI'
+                    }).get('href')
+            logo = "https://assets.gadgets360cdn.com/kostprice/assets/img/fk_40_40.png"
+
+            titles.append(title)
+            prices.append(price)
+            ratings.append(rating)
+            images.append(image)
+            links.append("https://www.flipkart.com" + link)
+            logos.append(logo)
+
+    results = zip(titles, prices, images, links, ratings, logos)
+
+    return results
+
+
+def amazonResults(query, sort_by):
+    titles = []
+    prices = []
+    images = []
+    links = []
+    ratings = []
+    logos = []
+
+    if query:
+        # specify the URL of the Amazon search results page
+        url = 'https://www.amazon.in/s?k=' + query + "&s=" + sort_by
+        headers = {
+            'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        }
+        response = requests.get(url, headers=headers)
+
+        # parse the HTML content of the response using BeautifulSoup
+        soup = BeautifulSoup(response.text, 'lxml')
+
+        products = soup.find_all(
+            'div', {
+                'class':
+                'sg-col-20-of-24 s-result-item s-asin sg-col-0-of-12 sg-col-16-of-20 sg-col s-widget-spacing-small sg-col-12-of-16'
+            }
+        ) if soup.find_all(
+            'div', {
+                'class':
+                'sg-col-20-of-24 s-result-item s-asin sg-col-0-of-12 sg-col-16-of-20 sg-col s-widget-spacing-small sg-col-12-of-16'
+            }
+        ) else soup.find_all(
+            'div', {
+                'class':
+                'sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20'
+            })
+
+        for product in products:
+            title = product.find(
+                'a', {
+                    'class':
+                    'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'
+                })
+            # price = product.find('span', {'class': 'a-price-whole'}) if product.find('span', {
+            #     'class': 'a-price-whole'}) else product.find('span', {'class': 'a-size-small'})
+            if (product.find('span', {'class': 'a-price-whole'})):
+                price = product.find('span', {
+                    'class': 'a-price-whole'
+                }).get_text()
+            elif (product.find('span', {'class': 'a-size-small'})):
+                price = product.find('span', {
+                    'class': 'a-size-small'
+                }).get_text()
+            else:
+                price = "NA"
+            image = product.find('img', {'class': 's-image'}) if product.find(
+                'img', {'class': 's-image'}) else "NA"
+            link = product.find(
+                'a', {
+                    'class':
+                    'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'
+                })
+            rating = product.find('span', {
+                'class': 'a-icon-alt'
+            }).get_text() if product.find('span',
+                                          {'class': 'a-icon-alt'}) else "N\A"
+            logo = "https://assets.gadgets360cdn.com/kostprice/assets/img/amazon_40_40.png"
+
+            titles.append(title.get_text())
+            links.append("https://www.amazon.in" + link.get('href'))
+            prices.append("₹" + price)
+            images.append(image.get('src'))
+            ratings.append(rating)
+            logos.append(logo)
+
+    results = zip(titles, prices, images, links, ratings, logos)
+
+    return results
