@@ -10,5 +10,6 @@
         "KHTML",
         "LKTO",
         "puis"
-    ]
+    ],
+    "python.formatting.provider": "yapf"
 }
