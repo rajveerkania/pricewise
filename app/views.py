@@ -18,13 +18,14 @@ def resultView(request):
 
     products = list(zip(adata, fdata))
 
-    paginator = Paginator(products, 5)
+    paginator = Paginator(products, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'page_obj': page_obj,
         'query': query,
         'sort_by': sort_by,
+        "query": query
     }
     return render(request, 'result.html', context)
 
@@ -111,7 +112,6 @@ def amazonResults(query, sort_by):
     logos = []
 
     if query:
-        # specify the URL of the Amazon search results page
         url = 'https://www.amazon.in/s?k=' + query + "&s=" + sort_by
         headers = {
             'User-Agent':
@@ -119,7 +119,6 @@ def amazonResults(query, sort_by):
         }
         response = requests.get(url, headers=headers)
 
-        # parse the HTML content of the response using BeautifulSoup
         soup = BeautifulSoup(response.text, 'lxml')
 
         products = soup.find_all(
@@ -144,8 +143,7 @@ def amazonResults(query, sort_by):
                     'class':
                     'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'
                 })
-            # price = product.find('span', {'class': 'a-price-whole'}) if product.find('span', {
-            #     'class': 'a-price-whole'}) else product.find('span', {'class': 'a-size-small'})
+            
             if (product.find('span', {'class': 'a-price-whole'})):
                 price = product.find('span', {
                     'class': 'a-price-whole'

@@ -1,121 +1,160 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Raleway:wght@100;300;500;700&display=swap");
 
 :root {
-  --bodyBack: #ffeaed;
-  --textColor: #1b2741;
-  --starColor: #f67034;
-  --sectionBack: #f7f6f9;
+  --bodyBack: #ffeaed !important;
+  --textColor: #1b2741 !important;
+  --starColor: #f67034 !important;
+  --sectionBack: #f7f6f9 !important;
 }
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  font-family: "Raleway", sans-serif !important;
 }
 body {
-  background-color: var(--bodyBack);
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
+  background-color: var(--bodyBack) !important;
+  min-height: 100vh !important;
+  display: grid !important;
+  place-content: center !important;
 }
-.container {
-  width: 80vw;
-  height: 80vh;
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.cus-container1 {
+  width: 80vw !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-around !important;
+}
+
+.cus-container2{
+  width: 80%;
+  justify-content: center;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
+
+.cus-col {
+  justify-content: center;
+  display: flex;
+}
+
+.cus-col2 {
+  justify-content: left;
+  display: flex;
+}
+
+.cus-col3 {
+  justify-self: center;
+  display: flex;
+}
+
 .header {
-  width: 100%;
-  text-align: center;
+  width: 100% !important;
+  text-align: center !important;
 }
 .header h1 {
-  font-size: 4em;
-  text-transform: uppercase;
-  color: var(--textColor);
+  font-size: 4em !important;
+  text-transform: uppercase !important;
+  color: var(--textColor) !important;
 }
+
+.dropdown-item{
+  border-color: black;
+  border-radius: 5%;
+}
+
+.dropdown-item:hover{
+  font-weight: 900;
+  background-color: transparent;
+}
+
 .products {
-  width: 100%;
-  align-self: center;
-  height: 70%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
+  width: 100% !important;
+  height: auto !important;
+  align-self: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 40px !important;
 }
 .product {
-  position: relative;
-  background-color: var(--sectionBack);
-  width: 350px;
-  height: 100%;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px 20px 40px;
-  border-radius: 10px;
-  transition: 0.3s;
+  position: relative !important;
+  background-color: var(--sectionBack) !important;
+  width: 350px !important;
+  height: 100% !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 20px 20px 40px !important;
+  border-radius: 10px !important;
+  transition: 0.3s !important;
 }
 .product:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-15px) !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) !important;
 }
 .image {
-  width: 100%;
-  height: 80%;
-  display: grid;
-  place-content: center;
-  justify-content: center;
-  display: flex;
+  width: 100% !important;
+  height: 80% !important;
+  display: grid !important;
+  place-content: center !important;
+  justify-content: center !important;
+  display: flex !important;
 }
 .image img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100% !important;
+  max-height: 100% !important;
 }
 .namePrice {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-top: 10px !important;
 
 }
 .namePrice h3 {
-  font-size: 1.2em;
-  text-transform: capitalize;
-  color: var(--textColor);
+  font-size: 1.2em !important;
+  text-transform: capitalize !important;
+  color: var(--textColor) !important;
 }
 .namePrice span {
-  margin-left: 5px;
-  padding-bottom: 30px;
-  font-size: 1.5em;
-  color: var(--starColor);
+  margin-left: 5px !important;
+  padding-bottom: 30px !important;
+  font-size: 1.5em !important;
+  color: var(--starColor) !important;
 }
 .product p {
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 18px !important;
+  line-height: 25px !important;
 }
 .stars svg {
-  font-size: 1.3em;
-  color: var(--starColor);
+  font-size: 1.3em !important;
+  color: var(--starColor) !important;
 }
 .bay {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  max-width: 84.6px;
-  max-height: 46.4px;
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  max-width: 84.6px !important;
+  max-height: 46.4px !important;
 }
 .bay button {
-  padding: 10px 20px;
-  border-radius: 7px;
-  border: none;
-  background-color: var(--textColor);
-  color: var(--sectionBack);
-  font-size: 18px;
-  text-transform: capitalize;
-  cursor: pointer;
-  transition: 0.5s;
+  padding: 10px 20px !important;
+  border-radius: 7px !important;
+  border: none !important;
+  background-color: var(--textColor) !important;
+  color: var(--sectionBack) !important;
+  font-size: 18px !important;
+  text-transform: capitalize !important;
+  cursor: pointer !important;
+  transition: 0.5s !important;
 }
 .bay button:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) !important;
 }
