@@ -19,6 +19,10 @@ body {
   place-content: center !important;
 }
 
+.result-text{
+  font-size: 2rem;
+}
+
 a {
   color: inherit !important;
   text-decoration: none !important;
@@ -32,10 +36,9 @@ a {
   justify-content: space-around !important;
 }
 
-.cus-container2{
-  width: 80%;
-  justify-content: center;
-  display: flex;
+.container{
+  width: 1050px !important;
+  margin: auto 89.4px auto 89.4px !important;
 }
 
 .cus-col {
@@ -49,8 +52,8 @@ a {
 }
 
 .cus-col3 {
-  justify-self: center;
-  display: flex;
+  justify-self: right !important;
+  display: flex !important;
 }
 
 .header {
@@ -63,12 +66,12 @@ a {
   color: var(--textColor) !important;
 }
 
-.dropdown-item{
+.dropdown-item {
   border-color: black;
   border-radius: 5%;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   font-weight: 900;
   background-color: transparent;
 }
@@ -116,7 +119,6 @@ a {
   display: flex !important;
   justify-content: space-between !important;
   margin-top: 10px !important;
-
 }
 .namePrice h3 {
   font-size: 1.2em !important;
@@ -132,7 +134,7 @@ a {
 .product p {
   font-size: 18px !important;
   line-height: 25px !important;
-}
+} 
 .stars svg {
   font-size: 1.3em !important;
   color: var(--starColor) !important;
@@ -157,4 +159,10 @@ a {
 }
 .bay button:hover {
   transform: scale(1.1) !important;
+}
+
+.pagination {
+  width: auto;
+  height: auto;
+  font-size: larger;
 }
