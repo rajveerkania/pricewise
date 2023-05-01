@@ -16,7 +16,7 @@ def resultView(request):
     fdata = flipkartResults(query, sort_by)
     adata = amazonResults(query, sort_by)
 
-    products = list(zip(adata, fdata))
+    products = list(zip(adata, fdata)) if len(list(fdata))>0 else list(zip(adata, adata))
 
     paginator = Paginator(products, 6)
     page_number = request.GET.get('page')
