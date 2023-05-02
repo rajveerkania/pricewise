@@ -25,7 +25,6 @@ def resultView(request):
         'page_obj': page_obj,
         'query': query,
         'sort_by': sort_by,
-        "query": query
     }
     return render(request, 'result.html', context)
 
