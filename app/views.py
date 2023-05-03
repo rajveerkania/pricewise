@@ -29,7 +29,7 @@ def resultView(request):
             final_products.append(amazonProduct)
             final_products.append(flipkartProduct)
 
-    paginator = Paginator(final_products, 10)    
+    paginator = Paginator(final_products, 12)    
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
