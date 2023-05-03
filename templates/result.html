@@ -48,6 +48,28 @@
 
     <!-- Container -->
     <div class="cus-container1">
+      <div class="dropdown show">
+        <a
+          class="btn btn-primary dropdown-toggle"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Sort Products
+        </a>
+      
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <select onChange="window.location.href=this.value">
+            <option value="?q={{ query }}&s=relevanceblender">Relevance</option>
+            <option value="?q={{ query }}&s=price-asc-rank">Ascending</option>
+            <option value="?q={{ query }}&s=price-desc-rank">Descending</option>
+            <option value="?q={{ query }}&s=date-desc-rank">Newest Arrival</option>
+          </select>
+        </div>
+      </div>
 
         <div class = "container">
           <div class = "row py-4">
@@ -59,28 +81,7 @@
               <p class = "result-text">Showing results for <b>{{query}}</b></p>
             </div>
             <div class = "col-6 cus-col3">
-              <div class="dropdown show">
-                <a
-                  class="btn btn-primary dropdown-toggle"
-                  href="#"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Sort Products
-                </a>
-              
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <select onChange="window.location.href=this.value">
-                    <option value="?q={{ query }}&s=relevanceblender">Relevance</option>
-                    <option value="?q={{ query }}&s=price-asc-rank">Ascending</option>
-                    <option value="?q={{ query }}&s=price-desc-rank">Descending</option>
-                    <option value="?q={{ query }}&s=date-desc-rank">Newest Arrival</option>
-                  </select>
-                </div>
-              </div>
+
             </div>
           </div>
         </div> 
