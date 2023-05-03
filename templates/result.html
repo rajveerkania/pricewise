@@ -82,18 +82,12 @@
                 </a>
               
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <a class="dropdown-item" href="?q={{ query }}&s=relevanceblender"
-                     onclick="sorting()">Relevance</a
-                  >
-                  <a class="dropdown-item" href="?q={{ query }}&s=price-asc-rank"
-                    >Low to High</a
-                  >
-                  <a class="dropdown-item" href="?q={{ query }}&s=price-desc-rank"
-                    >High to Low</a
-                  >
-                  <a class="dropdown-item" href="?q={{ query }}&s=date-desc-rank"
-                    >Newest Arrival First</a
-                    >
+                  <select onChange="window.location.href=this.value">
+                    <option value="?q={{ query }}&s=relevanceblender">Relevance</option>
+                    <option value="?q={{ query }}&s=price-asc-rank">Ascending</option>
+                    <option value="?q={{ query }}&s=price-desc-rank">Descending</option>
+                    <option value="?q={{ query }}&s=date-desc-rank">Newest Arrival</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -194,6 +188,29 @@
         cancelBtn.classList.add("show");
       };
     </script>
+    <script>
+      // Get the user's last selection from local storage
+      var lastSelection = localStorage.getItem('lastSelection');
+  
+      // Set the default selection to "Relevance" if no previous selection is found
+      var defaultSelection = lastSelection || "?q={{ query }}&s=relevanceblender";
+  
+      // Set the selected attribute on the default option
+      var select = document.querySelector('select');
+      var options = select.options;
+      for (var i = 0; i < options.length; i++) {
+          if (options[i].value === defaultSelection) {
+              options[i].selected = true;
+              break;
+          }
+      }
+  
+      // Update local storage when the user makes a new selection
+      select.addEventListener('change', function() {
+          localStorage.setItem('lastSelection', this.value);
+      });
+  </script>
+  
   </body>
 </html>
 
