@@ -4,3 +4,4 @@ urlpatterns = [
     path('', views.homeView, name = 'index'),
     path('result.html', views.resultView, name = 'result')
 ]
+
