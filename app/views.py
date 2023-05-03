@@ -13,12 +13,23 @@ def resultView(request):
     query = request.GET.get("q")
     sort_by = request.GET.get("s") if request.GET.get('s') else "relevanceblender"
 
-    fdata = flipkartResults(query, sort_by)
-    adata = amazonResults(query, sort_by)
+    fdata = list(flipkartResults(query, sort_by))
+    adata = list(amazonResults(query, sort_by))
 
-    products = list(zip(adata, fdata))
-    
-    paginator = Paginator(products, 6)    
+    products = zip(adata, fdata)
+    all_products = adata + fdata
+    final_products = []
+
+    if sort_by == 'price-asc-rank':
+        final_products = sorted(all_products, key=lambda x: x[1])
+    elif sort_by == 'price-desc-rank':
+        final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+    else:
+        for amazonProduct, flipkartProduct in products:
+            final_products.append(amazonProduct)
+            final_products.append(flipkartProduct)
+
+    paginator = Paginator(final_products, 10)    
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

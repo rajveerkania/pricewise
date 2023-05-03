@@ -103,8 +103,8 @@
         </nav> -->
       
       <div class="products">
-        {% for product in page_obj %}
-          {% for title, price, image, link, rating, logo in product %}
+        {% comment %} {% for product in page_obj %} {% endcomment %}
+          {% for title, price, image, link, rating, logo in page_obj %}
           <a href="{{ link }}" target="_blank">
             <div class="product">
               <div class="image">
@@ -130,7 +130,7 @@
             </div>
           </a>
           {% endfor %}
-        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
       </div>
     </div>
     <div class="pagination">
