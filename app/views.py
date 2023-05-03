@@ -16,13 +16,20 @@ def resultView(request):
     fdata = list(flipkartResults(query, sort_by))
     adata = list(amazonResults(query, sort_by))
 
-    if (len(fdata))>0:
-        products = list(zip(adata, fdata))
-        paginator = Paginator(products, 6)
+    products = zip(adata, fdata)
+    all_products = adata + fdata
+    final_products = []
+
+    if sort_by == 'price-asc-rank':
+        final_products = sorted(all_products, key=lambda x: x[1])
+    elif sort_by == 'price-desc-rank':
+        final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
     else:
-        products = list(zip(adata))
-        paginator = Paginator(products, 12)
-    
+        for amazonProduct, flipkartProduct in products:
+            final_products.append(amazonProduct)
+            final_products.append(flipkartProduct)
+
+    paginator = Paginator(final_products, 10)    
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
