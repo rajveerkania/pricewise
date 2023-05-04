@@ -43,6 +43,7 @@
           placeholder="Search..."
           required
           name = "q"
+          autocomplete="off"
         />
       </form>
     </nav>
@@ -50,13 +51,12 @@
     <!-- Container -->
     <div class="cus-container1">
       <div class="container">
-
         <div class="text">
           <p>Showing result for <b>{{query}}</b></p>
         </div>
         <div class="dropdown-show">
           <div class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuLink">
-            <select onChange="window.location.href=this.value">
+            <select class = "select-class" onChange="window.location.href=this.value">
               <option value="?q={{ query }}&s=relevanceblender">Relevance</option>
               <option value="?q={{ query }}&s=price-asc-rank">Price: Low to High</option>
               <option value="?q={{ query }}&s=price-desc-rank">Price: High to Low</option>
@@ -64,7 +64,6 @@
             </select>
           </div>
         </div>
-
       </div>
       
       
@@ -83,8 +82,12 @@
                 <span>{{ price }}</span>
               </div>
               <p style="margin-top: 10px">
+                {% if rating == "N\A"%}
+                ({{ rating|slice:"0:3" }})
+                {% else %}
                 ({{ rating|slice:"0:3" }}
-                <i class="fa-solid fa-star" style="color: #f67034"></i> out of 5)
+                  <i class="fa-solid fa-star" style="color: #f67034"></i> out of 5)
+                {% endif %}
                 <img
                   src="{{ logo }}"
                   alt="company-logo"
