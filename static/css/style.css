@@ -1,59 +1,63 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Raleway:wght@100;300;500;700&display=swap");
 
 :root {
-  --bodyBack: #ffeaed ;
-  --textColor: #1b2741 ;
-  --starColor: #f67034 ;
-  --sectionBack: #f7f6f9 ;
+  --bodyBack: #ffeaed;
+  --textColor: #1b2741;
+  --starColor: #f67034;
+  --sectionBack: #f7f6f9;
 }
 * {
-  padding: 0 ;
-  margin: 0 ;
-  box-sizing: border-box ;
-  font-family: "Raleway", sans-serif ;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
 }
 body {
-  background-color: var(--bodyBack) ;
-  min-height: 100vh ;
-  place-content: center ;
+  background-color: var(--bodyBack);
+  min-height: 100vh;
+  place-content: center;
 }
 
-.result-text{
+.result-text {
   font-size: 1.6rem;
 }
 
 a {
-  color: inherit ;
-  text-decoration: none ;
+  color: inherit;
+  text-decoration: none;
 }
 
 .cus-container1 {
   display: grid;
-  width: 80vw ;
-  height: auto ;
-  display: flex ;
-  flex-direction: column ;
-  justify-content: center ;
+  width: 80vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
 }
 
-.text{
+.text {
   font-size: large;
   display: none;
 }
 
-.dropdown-show{
+.dropdown-show {
   display: flex;
   justify-content: right;
 }
 
-@media (min-width: 768px) {
-  .text{
-    display: block;
-  }  
+.select-class{
+  border: 3px solid;
 }
 
-.container{
+@media (min-width: 768px) {
+  .text {
+    display: block;
+  }
+}
+
+.container {
   display: grid;
   grid-template-columns: 50% 50%;
   margin-bottom: 30px;
@@ -70,18 +74,18 @@ a {
 }
 
 .cus-col3 {
-  justify-self: right ;
-  display: flex ;
+  justify-self: right;
+  display: flex;
 }
 
 .header {
-  width: 100% ;
-  text-align: center ;
+  width: 100%;
+  text-align: center;
 }
 .header h1 {
-  font-size: 4em ;
-  text-transform: uppercase ;
-  color: var(--textColor) ;
+  font-size: 4em;
+  text-transform: uppercase;
+  color: var(--textColor);
 }
 
 .dropdown-item {
@@ -95,88 +99,88 @@ a {
 }
 
 .products {
-  width: 100% ;
-  height: auto ;
-  align-self: center ;
-  display: flex ;
-  justify-content: center ;
-  flex-wrap: wrap ;
-  gap: 40px ;
+  width: 100%;
+  height: auto;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 .product {
-  position: relative ;
-  background-color: var(--sectionBack) ;
-  width: 350px ;
-  height: 100% ;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3) ;
-  display: flex ; 
-  flex-direction: column ;
-  justify-content: space-between ;
-  padding: 20px 20px 40px ;
-  border-radius: 10px ;
-  transition: 0.3s ;
+  position: relative;
+  background-color: var(--sectionBack);
+  width: 350px;
+  height: 100%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 40px;
+  border-radius: 10px;
+  transition: 0.3s;
 }
 .product:hover {
-  transform: translateY(-15px) ;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) ;
+  transform: translateY(-15px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 .image {
-  width: 100% ;
-  height: 80% ;
-  display: grid ;
-  place-content: center ;
-  justify-content: center ;
-  display: flex ;
+  width: 100%;
+  height: 80%;
+  display: grid;
+  place-content: center;
+  justify-content: center;
+  display: flex;
 }
 .image img {
-  max-width: 100% ;
-  max-height: 100% ;
+  max-width: 100%;
+  max-height: 100%;
 }
 .namePrice {
-  width: 100% ;
-  display: flex ;
-  justify-content: space-between ;
-  margin-top: 10px ;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 .namePrice h3 {
-  font-size: 1.2em ;
-  text-transform: capitalize ;
-  color: var(--textColor) ;
+  font-size: 1.2em;
+  text-transform: capitalize;
+  color: var(--textColor);
 }
 .namePrice span {
-  margin-left: 5px ;
-  padding-bottom: 30px ;
-  font-size: 1.5em ;
-  color: var(--starColor) ;
+  margin-left: 5px;
+  padding-bottom: 30px;
+  font-size: 1.5em;
+  color: var(--starColor);
 }
 .product p {
-  font-size: 18px ;
-  line-height: 25px ;
-} 
+  font-size: 18px;
+  line-height: 25px;
+}
 .stars svg {
-  font-size: 1.3em ;
-  color: var(--starColor) ;
+  font-size: 1.3em;
+  color: var(--starColor);
 }
 .bay {
-  position: absolute ;
-  bottom: 20px ;
-  right: 20px ;
-  max-width: 84.6px ;
-  max-height: 46.4px ;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  max-width: 84.6px;
+  max-height: 46.4px;
 }
 .bay button {
-  padding: 10px 20px ;
-  border-radius: 7px ;
-  border: none ;
-  background-color: var(--textColor) ;
-  color: var(--sectionBack) ;
-  font-size: 18px ;
-  text-transform: capitalize ;
-  cursor: pointer ;
-  transition: 0.5s ;
+  padding: 10px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: var(--textColor);
+  color: var(--sectionBack);
+  font-size: 18px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 0.5s;
 }
 .bay button:hover {
-  transform: scale(1.1) ;
+  transform: scale(1.1);
 }
 
 .pagination {
@@ -185,10 +189,9 @@ a {
   font-size: larger;
 }
 
-
 /* Main Navbar */
 
-nav{
+nav {
   background: transparent;
   display: flex;
   flex-wrap: wrap;
@@ -199,49 +202,49 @@ nav{
   margin: 10px auto 70px auto;
 }
 
-nav .nav-items{
+nav .nav-items {
   display: flex;
   justify-content: center;
   flex: 1;
   padding: 0 0 0 40px;
 }
-nav .nav-items li{
+nav .nav-items li {
   margin: auto 10px auto 10px;
   list-style: none;
   padding: 0 15px;
   font-size: larger;
 }
-nav .nav-items li a{
+nav .nav-items li a {
   color: black;
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
 }
-nav .nav-items li a:hover{
-  color: #E363AA;
+nav .nav-items li a:hover {
+  color: #e363aa;
 }
-nav form{
+nav form {
   display: flex;
   height: 40px;
   padding: 2px;
   background: #1e232b;
-  min-width: 18%!important;
+  min-width: 18% !important;
   border-radius: 2px;
-  border: 1px solid rgba(155,155,155,0.2);
+  border: 1px solid rgba(155, 155, 155, 0.2);
 }
 
-nav form .search-data{
+nav form .search-data {
   width: 100%;
   height: 100%;
   padding: 0 10px;
-  color: #fff;
+  color: #123;
   font-size: 17px;
   border: none;
   font-weight: 500;
-  background: none;
+  background: #fff;
 }
 
-nav form button{
+nav form button {
   padding: 0 15px;
   color: #fff;
   font-size: 17px;
@@ -250,12 +253,12 @@ nav form button{
   border-radius: 2px;
   cursor: pointer;
 }
-nav form button:hover{
+nav form button:hover {
   background: #e63600;
 }
 nav .menu-icon,
 nav .cancel-icon,
-nav .search-icon{
+nav .search-icon {
   width: 40px;
   text-align: center;
   margin: 0 50px;
@@ -266,23 +269,23 @@ nav .search-icon{
 }
 nav .menu-icon span,
 nav .cancel-icon,
-nav .search-icon{
+nav .search-icon {
   display: none;
 }
 @media (max-width: 1245px) {
-  nav{
+  nav {
     padding: 0 50px;
   }
 }
-@media (max-width: 1140px){
-  nav{
+@media (max-width: 1140px) {
+  nav {
     padding: 0px;
   }
-  nav .logo{
+  nav .logo {
     flex: 2;
     text-align: center;
   }
-  nav .nav-items{
+  nav .nav-items {
     position: fixed;
     z-index: 99;
     top: 90px;
@@ -291,21 +294,21 @@ nav .search-icon{
     height: 100%;
     padding: 10px 50px 0 50px;
     text-align: center;
-    background: #FFEAED;
+    background: #ffeaed;
     display: inline-block;
     transition: left 0.3s ease;
   }
-  nav .nav-items.active{
+  nav .nav-items.active {
     left: 0px;
   }
-  nav .nav-items li{
+  nav .nav-items li {
     line-height: 40px;
     margin: 30px 0;
   }
-  nav .nav-items li a{
+  nav .nav-items li a {
     font-size: 20px;
   }
-  nav form{
+  nav form {
     position: absolute;
     top: 80px;
     right: 50px;
@@ -313,12 +316,12 @@ nav .search-icon{
     pointer-events: none;
     transition: top 0.3s ease, opacity 0.1s ease;
   }
-  nav form.active{
+  nav form.active {
     top: 95px;
     opacity: 1;
     pointer-events: auto;
   }
-  nav form:before{
+  nav form:before {
     position: absolute;
     content: "";
     top: -13px;
@@ -330,9 +333,9 @@ nav .search-icon{
     border-bottom-color: #1e232b;
     margin: -20px 0 0;
   }
-  nav form:after{
+  nav form:after {
     position: absolute;
-    content: '';
+    content: "";
     height: 60px;
     padding: 2px;
     background: #1e232b;
@@ -343,80 +346,78 @@ nav .search-icon{
     top: 50%;
     transform: translate(-50%, -50%);
   }
-  nav .menu-icon{
+  nav .menu-icon {
     display: block;
   }
   nav .search-icon,
-  nav .menu-icon span{
+  nav .menu-icon span {
     display: block;
   }
   nav .menu-icon span.hide,
-  nav .search-icon.hide{
+  nav .search-icon.hide {
     display: none;
   }
-  nav .cancel-icon.show{
+  nav .cancel-icon.show {
     display: block;
   }
 }
-.content{
+.content {
   position: absolute;
   top: 50%;
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
 }
-.content header{
+.content header {
   font-size: 30px;
   font-weight: 700;
 }
-.content .text{
+.content .text {
   font-size: 30px;
   font-weight: 700;
 }
-.space{
+.space {
   margin: 10px 0;
 }
-nav .logo.space{
+nav .logo.space {
   color: red;
   padding: 0 5px 0 0;
 }
-@media (max-width: 980px){
+@media (max-width: 980px) {
   nav .menu-icon,
   nav .cancel-icon,
-  nav .search-icon{
+  nav .search-icon {
     margin: 0 20px;
   }
-  nav form{
+  nav form {
     right: 30px;
   }
 }
-@media (max-width: 350px){
+@media (max-width: 350px) {
   nav .menu-icon,
   nav .cancel-icon,
-  nav .search-icon{
+  nav .search-icon {
     margin: 0 10px;
     font-size: 16px;
   }
 }
-.content{
+.content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.content header{
+.content header {
   font-size: 30px;
   font-weight: 700;
 }
-.content .text{
+.content .text {
   font-size: 30px;
   font-weight: 700;
 }
-.content .space{
+.content .space {
   margin: 10px 0;
 }
-
-
 
 /* Navbar navigator */
 
@@ -433,14 +434,13 @@ nav .logo.space{
   opacity: 1;
 }
 
-
 select {
   padding: 5px;
   font-size: 14px;
   border: 1px solid black;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #F7F6F9;
+  background-color: #f7f6f9;
   color: #000;
 }
 
@@ -454,7 +454,7 @@ label {
 
 select {
   border-color: black;
-  color: black
+  color: black;
 }
 
 select:focus {
