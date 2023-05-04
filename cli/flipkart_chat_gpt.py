@@ -22,9 +22,8 @@ if len(check) == 0:
         rating = container.find('div', {'class': '_3LWZlK'}).text if container.find('div', {
         'class': '_3LWZlK'}) else 'N\A'
         
-        image = container.find('div', {'class': '_396cs4'}).get('src')
         
-        print(f'\n\nTitle: {title} \nPrice: {price} \nRating: {rating} \nImage URL: {image}\n\n')
+        print(f'\n\nTitle: {title} \nPrice: {price} \nRating: {rating} \n\n')
         
     
 else:
@@ -37,6 +36,5 @@ else:
         
         rating = container.find('div', {'class': '_3LWZlK'}).text
         
-        image = container.find('div', {'class': '_396cs4'}).get('src')
         
-        print(f'\n\nTitle: {title} \nPrice: {price} \nRating: {rating} \nImage URL: {image}\n\n')
+        print(f'\n\nTitle: {title} \nPrice: {price} \nRating: {rating} \n\n')

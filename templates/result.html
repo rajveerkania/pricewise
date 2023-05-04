@@ -15,10 +15,9 @@
     />
   </head>
   <body>
-
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
     <!-- Navbar -->
-
-    <nav>
+    <nav id = "#top">
       <div class="menu-icon">
         <span class="fas fa-bars" style="color: black;"></span>
       </div>
@@ -26,8 +25,8 @@
       <div class="nav-items">
         <li><a href="/">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Feedback</a></li>
+        <li><a href="mailto:kaniarajveer02@gmail.com">Contact</a></li>
+        <li><a href="mailto:kaniarajveer02@gmail.com">Feedback</a></li>
       </div>
       <div class="search-icon">
         <span class="fas fa-search" style="color: black;"></span>
@@ -106,7 +105,7 @@
         {% if page_obj.has_previous %}
         <a
           href="?q={{ query }}&s={{ sort_by }}&page={{ page_obj.previous_page_number }}"
-          ><button class = "prev"><</button></a 
+          ><button class = "prev">Previous</button></a 
         >
         {% endif %}
 
@@ -117,15 +116,35 @@
         {% if page_obj.has_next %}
         <a
           href="?q={{ query }}&s={{ sort_by }}&page={{ page_obj.next_page_number }}"
-          ><button class = "next">></button></a
+          ><button class = "next">Next</button></a
         >
         {% endif %}
       </span>
     </div>
 
-    <div class="scroll-arrow">
-      <a href="#top"><i class="fas fa-arrow-up"></i></a>
-    </div>
+
+    <footer>
+      <div class="footer-content">
+        <h3>PriceWise</h3>
+        <ul class = "footer-tags">
+          <li><a href = "">Contact Us</a></li>
+          <li><a href = "">About</a></li>
+          <li><a href="mailto:kaniarajveer02@gmail.com">Feedback</a></li>
+        </ul>  
+        <ul class="socials">
+          <li>
+            <a href="https://www.linkedin.com/" target="_blank"><i
+              class="last-icons fa-brands fa-linkedin"></i></a>
+          </li>
+          <li>
+            <a href="mailto:kaniarajveer02@gmail.com"><i class="last-icons fa-solid fa-envelope"></i></a>
+          </li>
+        </ul>
+        <p style = "justify-content: left; color: #8f8f8f;">Copyright &copy; <a href="/">Pricewise</a></p>
+      </div>
+      </div>
+    </footer>
+    
     <script src = "{% static 'js/index.js' %}" ></script>
     <script>
       const menuBtn = document.querySelector(".menu-icon span");
@@ -175,6 +194,7 @@
           localStorage.setItem('lastSelection', this.value);
       });
   </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </body>
 </html>
 

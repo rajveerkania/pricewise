@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Raleway:wght@100;300;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
 
 :root {
   --bodyBack: #ffeaed;
@@ -419,21 +421,6 @@ nav .logo.space {
   margin: 10px 0;
 }
 
-/* Navbar navigator */
-
-.scroll-arrow {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 99;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-}
-
-.scroll-arrow.show {
-  opacity: 1;
-}
-
 select {
   padding: 5px;
   font-size: 14px;
@@ -461,23 +448,6 @@ select:focus {
   border-color: black;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .pagination {
   display: flex;
   justify-content: center;
@@ -504,4 +474,76 @@ select:focus {
 
 .pagination .page-numbers {
   font-size: 18px;
+}
+
+
+footer {
+  margin: 2rem auto 0 auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  height: auto;
+  width: 100vw;
+  padding-top: 40px;
+  color: #fff;
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.footer-content h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  line-height: 2rem;
+}
+
+.footer-content h3:hover{
+  color: #e363aa;
+}
+
+.footer-tags{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0 1rem 0;
+}
+
+.footer-tags li{
+  margin: 0 10px;
+}
+
+.footer-tags li:hover{
+  color: #e363aa;
+  font-size: large;
+}
+
+.socials {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0 1rem 0;
+}
+
+.socials li {
+  margin: 0 10px;
+}
+
+.last-icons{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color:white;
+  padding: 2px 5px 0px 5px;
+  border-radius: 100%;
+}
+
+.last-icons:hover{
+  color: #e363aa
 }
