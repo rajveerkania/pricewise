@@ -237,7 +237,7 @@ nav form .search-data {
   width: 100%;
   height: 100%;
   padding: 0 10px;
-  color: #123;
+  color: black;
   font-size: 17px;
   border: none;
   font-weight: 500;
@@ -459,4 +459,49 @@ select {
 
 select:focus {
   border-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  opacity: 0.8;
+}
+
+.pagination .page-numbers {
+  font-size: 18px;
 }
