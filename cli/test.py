@@ -1,1 +1,0 @@
-print(len("SAMSUNG Galaxy A54 5G (Awesome Graphite, 256 GB)"))
