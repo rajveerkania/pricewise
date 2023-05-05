@@ -211,3 +211,7 @@ def amazonResults(query, sort_by):
     results = zip(titles, prices, images, links, ratings, logos)
 
     return results
+
+
+def aboutView(request):
+    return render(request, 'about.html')
