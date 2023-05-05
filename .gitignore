@@ -4,9 +4,6 @@
 # Ignore the virtual environment
 venv/
 
-# Ignore the footer
-cli/
-
 # Ignore database files
 db.sqlite3
 
