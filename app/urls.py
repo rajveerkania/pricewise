@@ -5,4 +5,3 @@ urlpatterns = [
     path('result.html', views.resultView, name = 'result'),
     path('about.html', views.aboutView, name = 'about')
 ]
-
