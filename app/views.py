@@ -15,6 +15,11 @@ def resultView(request):
 
     fdata = list(flipkartResults(query, sort_by))
     adata = list(amazonResults(query, sort_by))
+    
+    print(fdata)
+    
+    if len(fdata)==0 and len(adata)==0:
+        return render(request, '404.html')
 
     products = zip(adata, fdata)
     all_products = adata + fdata
@@ -76,7 +81,7 @@ def flipkartResults(query, sort_by):
             products = soup.find_all('div', {'class': '_1xHGtK _373qXS'})
             
             for product in products:
-                title = product.find('div', {'class': '_2WkVRV'}).get_text() + ' ' + product.find('a', {'class': 'IRpwTa'}).get_text()
+                title = product.find('a', {'class': 'IRpwTa'}).get_text()
                 
                 price = product.find('div', {'class': '_30jeq3'}).get_text()
                 
@@ -215,3 +220,6 @@ def amazonResults(query, sort_by):
 
 def aboutView(request):
     return render(request, 'about.html')
+
+def templateView(request):
+    return render(request, 'template.html')

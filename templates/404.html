@@ -1,12 +1,11 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
     <link href="{% static 'img/favicon.ico' %}" rel="icon" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -15,29 +14,24 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
 </head>
-  <body>
+<body>
+    
     <nav>
         <div class="menu-icon">
-            <span class="fas fa-bars" style="color: black"></span>
+          <span class="fas fa-bars" style="color: black;"></span>
         </div>
-        <div class="logo">
-            <a href="/"
-            ><img
-            src="{% static 'img\logo-no-background.svg' %}"
-            style="height: 70px"
-            /></a>
-        </div>
+        <div class="logo"><a href = "/"><img src = "{% static 'img\logo-no-background.svg' %}" style = "height: 70px;"></a> </div>
         <div class="nav-items">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="mailto:kaniarajveer02@gmail.com">Contact</a></li>
-            <li><a href="mailto:kaniarajveer02@gmail.com">Feedback</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="mailto:kaniarajveer02@gmail.com">Contact</a></li>
+          <li><a href="mailto:kaniarajveer02@gmail.com">Feedback</a></li>
         </div>
         <div class="search-icon">
-          <span class="fas fa-search" style="color: black"></span>
+          <span class="fas fa-search" style="color: black;"></span>
         </div>
-        <div class="cancel-icon" style="color: black">
-          <span class="fas fa-times" style="color: black"></span>
+        <div class="cancel-icon" style="color: black;">
+          <span class="fas fa-times" style="color: black;"></span>
         </div>
         <form method="get" action="result.html">
           <input
@@ -45,47 +39,19 @@
             class="search-data"
             placeholder="Search..."
             required
-            name="q"
+            name = "q"
             autocomplete="off"
           />
-        </form>
-    </nav>
+        </form> 
+      </nav>
 
-    <div class="heading">
-      <h1>About Us</h1>
+      <div class = "no-results">
+        <img src = "{% static 'img\404.svg' %}" style="width: 400px">
+        <h1>Sorry, No results found</h1>
       </div>
-    <div class = "about-us">
-      <div class = "col">
-        <p>A web scraper website that compares prices between two of the biggest e-commerce platforms in the world, Amazon and Flipkart, can be an incredibly useful tool for consumers looking to make informed purchasing decisions. By scraping the websites of both platforms and collecting data on pricing and other relevant information, this website can provide users with valuable insights into where they can find the best deals and save money.</p>
-      </div>
-    </div>
-    
 
 
-    <div class = "heading">
-      <h1>Our Team</h1>
-    </div>
-
-    <div class = "container">
-        <div class = "member-text">
-          <h1>Rajveer Kania</h1>
-          <p>A skilled team member who played a crucial role in designing both the backend and frontend components, as well as web scraping for a website. He implemented various backend features such as database management, data processing, and API integration, and used his expertise in HTML, CSS, and JavaScript to create a visually appealing and user-friendly interface. Rajveer's technical skills and attention to detail were highly valued by the team, and his contributions were critical to the success of the project.<p>
-            
-        </div>
-        <div class = "member-image">
-            <img src = "{% static 'img/rajveer.jpg' %}" class = "member-photo">
-        </div>
-        <div class = "member-image">
-            <img src = "{% static 'img/paraag.jpg' %}" class = "member-photo">
-        </div>
-        <div class = "member-text">
-          <h1>Paraag Sharma</h1>
-          <p>An experienced backend developer who played a crucial role in designing the architecture and infrastructure of a website. He also implemented features such as database management, data processing, and API integration. Additionally, Paraag was responsible for web scraping, using his technical skills to create powerful tools that gathered valuable information for the website's users. His dedication and attention to detail were highly valued by the team.<p>
-        </div>
-    </div>
-        
-
-    <footer>
+    <footer style="position: absolute">
         <div class="footer-content">
           <h3>PriceWise</h3>
           <ul class = "footer-tags">
@@ -144,5 +110,5 @@
       };
     </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    </body>
+</body>
 </html>
