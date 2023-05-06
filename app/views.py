@@ -15,6 +15,11 @@ def resultView(request):
 
     fdata = list(flipkartResults(query, sort_by))
     adata = list(amazonResults(query, sort_by))
+    
+    print(fdata)
+    
+    if len(fdata)==0 and len(adata)==0:
+        return render(request, '404.html')
 
     if len(fdata)==0 and len(adata)==0:
         return render(request, '404.html', context)
@@ -219,3 +224,6 @@ def amazonResults(query, sort_by):
 
 def aboutView(request):
     return render(request, 'about.html')
+
+def templateView(request):
+    return render(request, 'template.html')
