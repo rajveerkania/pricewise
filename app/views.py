@@ -17,56 +17,35 @@ def resultView(request):
 
     fdata = list(flipkartResults(query, sort_by))
     adata = list(amazonResults(query, sort_by))
-        
-    if len(fdata) == 0:
-        print("Flipkart mein nahi hai")
-        products = list(zip(adata))
-        final_products = []
+
+    final_products = []
+
+    if (len(fdata) == 0):
+        all_products = adata
         if sort_by == 'price-asc-rank':
             final_products = sorted(all_products, key=lambda x: x[1])
         elif sort_by == 'price-desc-rank':
             final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
         else:
-            for amazonProduct in products:
+            for amazonProduct in all_products:
                 final_products.append(amazonProduct)
-            paginator = Paginator(products, 6)
-            page_number = request.GET.get('page')
-            page_obj = paginator.get_page(page_number)
-            context = {
-                'page_obj': page_obj,
-                'query': query,
-                'sort_by': sort_by,
-            }
-            
-        
-    
-    elif len(adata) == 0:
-        print("Amazon mein nahi hai")
-        products = list(zip(fdata))
-        final_products = []
+
+    elif (len(adata)) == 0:
+        all_products = fdata
         if sort_by == 'price-asc-rank':
             final_products = sorted(all_products, key=lambda x: x[1])
         elif sort_by == 'price-desc-rank':
             final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
         else:
-            for flipkartProduct in products:
+            for flipkartProduct in all_products:
                 final_products.append(flipkartProduct)
-            paginator = Paginator(products, 6)
-            page_number = request.GET.get('page')
-            page_obj = paginator.get_page(page_number)
-            context = {
-                'page_obj': page_obj,
-                'query': query,
-                'sort_by': sort_by,
-            }
-            
-    elif(len(adata) == 0 and len(fdata) == 0):
+
+    elif (len(adata))==0 and (len(fdata))==0:
         noResultView(request)
-        
-    else:        
+
+    else:
         products = zip(adata, fdata)
         all_products = adata + fdata
-        final_products = []
         if sort_by == 'price-asc-rank':
             final_products = sorted(all_products, key=lambda x: x[1])
         elif sort_by == 'price-desc-rank':
@@ -75,17 +54,17 @@ def resultView(request):
             for amazonProduct, flipkartProduct in products:
                 final_products.append(amazonProduct)
                 final_products.append(flipkartProduct)
-        paginator = Paginator(final_products, 12)    
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        context = {
-            'page_obj': page_obj,
-            'query': query,
-            'sort_by': sort_by,
-        }
-        
-    return render(request, 'result.html', context)
 
+    paginator = Paginator(final_products, 12)    
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj,
+        'query': query,
+        'sort_by': sort_by,
+    }
+
+    return render(request, 'result.html', context)
 
 def flipkartResults(query, sort_by):
     titles = []
