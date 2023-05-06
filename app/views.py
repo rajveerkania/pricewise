@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from django.core.paginator import Paginator
 
 
-def homeView(request):
+def homeView(request):  
     return render(request, 'index.html')
 
 
@@ -16,28 +16,32 @@ def resultView(request):
     fdata = list(flipkartResults(query, sort_by))
     adata = list(amazonResults(query, sort_by))
 
-    products = zip(adata, fdata)
-    all_products = adata + fdata
-    final_products = []
-
-    if sort_by == 'price-asc-rank':
-        final_products = sorted(all_products, key=lambda x: x[1])
-    elif sort_by == 'price-desc-rank':
-        final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+    if len(fdata)==0 and len(adata)==0:
+        return render(request, '404.html', context)
+    
     else:
-        for amazonProduct, flipkartProduct in products:
-            final_products.append(amazonProduct)
-            final_products.append(flipkartProduct)
+        products = zip(adata, fdata)
+        all_products = adata + fdata
+        final_products = []
 
-    paginator = Paginator(final_products, 12)    
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {
-        'page_obj': page_obj,
-        'query': query,
-        'sort_by': sort_by,
-    }
-    return render(request, 'result.html', context)
+        if sort_by == 'price-asc-rank':
+            final_products = sorted(all_products, key=lambda x: x[1])
+        elif sort_by == 'price-desc-rank':
+            final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+        else:
+            for amazonProduct, flipkartProduct in products:
+                final_products.append(amazonProduct)
+                final_products.append(flipkartProduct)
+
+        paginator = Paginator(final_products, 12)    
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'page_obj': page_obj,
+            'query': query,
+            'sort_by': sort_by,
+        }
+        return render(request, 'result.html', context)
 
 
 def flipkartResults(query, sort_by):
@@ -76,7 +80,7 @@ def flipkartResults(query, sort_by):
             products = soup.find_all('div', {'class': '_1xHGtK _373qXS'})
             
             for product in products:
-                title = product.find('div', {'class': '_2WkVRV'}).get_text() + ' ' + product.find('a', {'class': 'IRpwTa'}).get_text()
+                title = product.find('a', {'class': 'IRpwTa'}).get_text()
                 
                 price = product.find('div', {'class': '_30jeq3'}).get_text()
                 
