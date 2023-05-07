@@ -9,7 +9,8 @@
         "fresponse",
         "KHTML",
         "LKTO",
-        "puis"
+        "puis",
+        "vercel"
     ],
     "python.formatting.provider": "yapf"
 }
