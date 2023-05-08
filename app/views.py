@@ -9,7 +9,7 @@ def homeView(request):
     return render(request, 'index.html')
 
 def noResultView(request):
-    return render(request, '404.html')
+    return render(request, 'template.html')
 
 def resultView(request):
     query = request.GET.get("q")

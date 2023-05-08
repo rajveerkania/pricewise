@@ -504,6 +504,7 @@ footer {
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  bottom: 0;
 }
 .footer-content h3 {
   font-family: 'Dancing Script', cursive;
