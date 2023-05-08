@@ -8,9 +8,6 @@ from django.core.paginator import Paginator
 def homeView(request):  
     return render(request, 'index.html')
 
-def noResultView(request):
-    return render(request, 'template.html')
-
 def resultView(request):
     query = request.GET.get("q")
     sort_by = request.GET.get("s") if request.GET.get('s') else "relevanceblender"
@@ -20,51 +17,52 @@ def resultView(request):
 
     final_products = []
 
-    if (len(fdata) == 0):
-        all_products = adata
-        if sort_by == 'price-asc-rank':
-            final_products = sorted(all_products, key=lambda x: x[1])
-        elif sort_by == 'price-desc-rank':
-            final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+    if len(adata)>0 or len(fdata)>0:
+        
+        if (len(fdata) == 0):
+            all_products = adata
+            if sort_by == 'price-asc-rank':
+                final_products = sorted(all_products, key=lambda x: x[1])
+            elif sort_by == 'price-desc-rank':
+                final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+            else:
+                for amazonProduct in all_products:
+                    final_products.append(amazonProduct)
+
+        elif (len(adata)) == 0:
+            all_products = fdata
+            if sort_by == 'price-asc-rank':
+                final_products = sorted(all_products, key=lambda x: x[1])
+            elif sort_by == 'price-desc-rank':
+                final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+            else:
+                for flipkartProduct in all_products:
+                    final_products.append(flipkartProduct)
+
         else:
-            for amazonProduct in all_products:
-                final_products.append(amazonProduct)
+            products = zip(adata, fdata)
+            all_products = adata + fdata
+            if sort_by == 'price-asc-rank':
+                final_products = sorted(all_products, key=lambda x: x[1])
+            elif sort_by == 'price-desc-rank':
+                final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+            else:
+                for amazonProduct, flipkartProduct in products:
+                    final_products.append(amazonProduct)
+                    final_products.append(flipkartProduct)
 
-    elif (len(adata)) == 0:
-        all_products = fdata
-        if sort_by == 'price-asc-rank':
-            final_products = sorted(all_products, key=lambda x: x[1])
-        elif sort_by == 'price-desc-rank':
-            final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
-        else:
-            for flipkartProduct in all_products:
-                final_products.append(flipkartProduct)
+        paginator = Paginator(final_products, 12)    
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'page_obj': page_obj,
+            'query': query,
+            'sort_by': sort_by,
+        }
 
-    elif (len(adata))==0 and (len(fdata))==0:
-        noResultView(request)
-
-    else:
-        products = zip(adata, fdata)
-        all_products = adata + fdata
-        if sort_by == 'price-asc-rank':
-            final_products = sorted(all_products, key=lambda x: x[1])
-        elif sort_by == 'price-desc-rank':
-            final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
-        else:
-            for amazonProduct, flipkartProduct in products:
-                final_products.append(amazonProduct)
-                final_products.append(flipkartProduct)
-
-    paginator = Paginator(final_products, 12)    
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {
-        'page_obj': page_obj,
-        'query': query,
-        'sort_by': sort_by,
-    }
-
-    return render(request, 'result.html', context)
+        return render(request, 'result.html', context)
+    
+    return render(request, '404.html')
 
 def flipkartResults(query, sort_by):
     titles = []
