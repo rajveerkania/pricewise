@@ -15,6 +15,7 @@
   font-family: "Raleway", sans-serif;
 }
 body {
+  position: relative;
   background-color: var(--bodyBack);
   min-height: 100vh;
   place-content: center;
@@ -488,6 +489,7 @@ select:focus {
 
 
 footer {
+  position: relative;
   margin: 2rem auto 0 auto;
   bottom: 0;
   left: 0;
