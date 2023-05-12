@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
     <link href="{% static 'img/favicon.ico' %}" rel="icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,19 +24,87 @@
     <title>PriceWise</title>
   </head>
   <body>
-    <div class="logo-div">
-      <div>
-        <img class="logo" src="{% static 'img/logo.png' %}" />
+    <nav>
+      <div class="menu-icon">
+        <span class="fas fa-bars" style="color: black"></span>
       </div>
+      {% comment %} <div class="logo">
+        <a href="/"
+          ><img
+            src="{% static 'img\logo-no-background.svg' %}"
+            style="height: 70px"
+        /></a>
+      </div> {% endcomment %}
+      <div class="nav-items">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="mailto:kaniarajveer02@gmail.com">Contact</a></li>
+        <li><a href="mailto:kaniarajveer02@gmail.com">Feedback</a></li>
+      </div>
+      <div class="search-icon" hidden>
+        <span class="fas fa-search" style="color: black"></span>
+      </div>
+      <div class="cancel-icon" style="color: black">
+        <span class="fas fa-times" style="color: black"></span>
+      </div>
+      {% comment %} <form method="get" action="result.html">
+        <input
+          type="text"
+          class="search-data"
+          placeholder="Search..."
+          required
+          name="q"
+          autocomplete="off"
+        />
+      </form> {% endcomment %}
+    </nav>
+
+    <div class="main">
+      <div class="logo-div">
+        <div>
+          <img class="logo" src="{% static 'img/logo.png' %}" />
+        </div>
+      </div>
+      <form method="get" action="result.html" style="padding-bottom: 145px;">
+        <div class="box">
+          <input
+            type="text"
+            name="q"
+            placeholder="Search..."
+            autocomplete="off"
+          />
+          <a href="#">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+        </div>
+      </form>
     </div>
-    <form method="get" action="result.html">
-      <div class="box">
-        <input type="text" name="q" placeholder="Search..." autocomplete="off"/>
-        <a href="#">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </a>
-      </div>
-    </form>
     <script src="{% static 'js/index.js' %}"></script>
+    <script>
+      const menuBtn = document.querySelector(".menu-icon span");
+      const searchBtn = document.querySelector(".search-icon");
+      const cancelBtn = document.querySelector(".cancel-icon");
+      const items = document.querySelector(".nav-items");
+      const form = document.querySelector("form");
+      menuBtn.onclick = () => {
+        items.classList.add("active");
+        menuBtn.classList.add("hide");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      };
+      cancelBtn.onclick = () => {
+        items.classList.remove("active");
+        menuBtn.classList.remove("hide");
+        searchBtn.classList.remove("hide");
+        cancelBtn.classList.remove("show");
+        form.classList.remove("active");
+        cancelBtn.style.color = "#ff3d00";
+      };
+      searchBtn.onclick = () => {
+        form.classList.add("active");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      };
+    </script>
   </body>
 </html>
