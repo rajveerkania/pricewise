@@ -75,7 +75,7 @@ nav .nav-items {
   flex: 1;
   padding-top: 30px;
   padding-bottom: 30px;
-}
+} 
 nav .nav-items li {
   margin: auto 10px auto 10px;
   list-style: none;
@@ -167,7 +167,7 @@ nav .cancel-icon {
     transition: left 0.3s ease;
   }
   nav .nav-items.active {
-    left: 0px;
+    left: -50px;
   }
   nav .nav-items li {
     line-height: 40px;
@@ -268,7 +268,7 @@ nav .logo.space {
 .content {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 100%;
   transform: translate(-50%, -50%);
 }
 .content header {

@@ -571,9 +571,24 @@ footer {
   display: flex;
   justify-content: center;
   padding: 100px;
+  max-width: 70%;
   font-size: 1.7rem;
-  max-width: 80%;
 }
+
+
+
+@media (max-width: 778px){
+
+  .col{
+    padding: 0px;
+  }
+
+
+  .col p{
+    font-size: 19px;
+  }
+}
+
 
 .member-text{
   justify-content: center;
