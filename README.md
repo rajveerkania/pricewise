@@ -21,9 +21,7 @@ python manage.py runserver
 ## Working
 
 Once the HTML content of the product pages is fetched, the BeautifulSoup4 package is employed to parse and navigate the HTML structure. This allows you to extract relevant information such as product names, prices, descriptions, ratings, and reviews.
-
 The scraped data from both websites is then compared to identify price differences and other relevant details. This comparison is performed within your Django web app.
-
 Finally, the compared data is presented to the user through the web interface.
 
 ## Contributing
