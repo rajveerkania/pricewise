@@ -1,2 +1,5 @@
 # Ignore any other files or directories that should not be version controlled
 .vscode/
+
+#Ignore all the pycache files and directories
+__pycache__/
