@@ -5,26 +5,29 @@ from bs4 import BeautifulSoup
 from django.core.paginator import Paginator
 
 
-def homeView(request):  
+def homeView(request):
     return render(request, 'index.html')
+
 
 def resultView(request):
     query = request.GET.get("q")
-    sort_by = request.GET.get("s") if request.GET.get('s') else "relevanceblender"
+    sort_by = request.GET.get("s") if request.GET.get(
+        's') else "relevanceblender"
 
     fdata = list(flipkartResults(query, sort_by))
     adata = list(amazonResults(query, sort_by))
 
     final_products = []
 
-    if len(adata)>0 or len(fdata)>0:
-        
+    if len(adata) > 0 or len(fdata) > 0:
+
         if (len(fdata) == 0):
             all_products = adata
             if sort_by == 'price-asc-rank':
                 final_products = sorted(all_products, key=lambda x: x[1])
             elif sort_by == 'price-desc-rank':
-                final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+                final_products = sorted(
+                    all_products, key=lambda x: x[1], reverse=True)
             else:
                 for amazonProduct in all_products:
                     final_products.append(amazonProduct)
@@ -34,7 +37,8 @@ def resultView(request):
             if sort_by == 'price-asc-rank':
                 final_products = sorted(all_products, key=lambda x: x[1])
             elif sort_by == 'price-desc-rank':
-                final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+                final_products = sorted(
+                    all_products, key=lambda x: x[1], reverse=True)
             else:
                 for flipkartProduct in all_products:
                     final_products.append(flipkartProduct)
@@ -45,13 +49,14 @@ def resultView(request):
             if sort_by == 'price-asc-rank':
                 final_products = sorted(all_products, key=lambda x: x[1])
             elif sort_by == 'price-desc-rank':
-                final_products = sorted(all_products, key=lambda x: x[1], reverse=True)
+                final_products = sorted(
+                    all_products, key=lambda x: x[1], reverse=True)
             else:
                 for amazonProduct, flipkartProduct in products:
                     final_products.append(amazonProduct)
                     final_products.append(flipkartProduct)
 
-        paginator = Paginator(final_products, 12)    
+        paginator = Paginator(final_products, 12)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         context = {
@@ -61,8 +66,9 @@ def resultView(request):
         }
 
         return render(request, 'result.html', context)
-    
+
     return render(request, '404.html')
+
 
 def flipkartResults(query, sort_by):
     titles = []
@@ -90,35 +96,34 @@ def flipkartResults(query, sort_by):
         response = requests.get(url, headers=headers)
 
         soup = BeautifulSoup(response.text, 'lxml')
-        
 
         products = soup.find_all('div', {'class': '_2kHMtA'}) if soup.find_all(
             'div', {'class': '_2kHMtA'}) else soup.find_all(
                 'div', {'class': '_4ddWXP'})
-            
+
         if len(products) == 0:
             products = soup.find_all('div', {'class': '_1xHGtK _373qXS'})
-            
+
             for product in products:
                 title = product.find('a', {'class': 'IRpwTa'}).get_text()
-                
+
                 price = product.find('div', {'class': '_30jeq3'}).get_text()
-                
+
                 rating = "N\A"
-                
+
                 image = product.find('img', {'class': '_2r_T1I'}).get('src')
-                
+
                 link = product.find('a', {'class': '_2UzuFa'}).get('href')
-                
+
                 logo = "https://assets.gadgets360cdn.com/kostprice/assets/img/fk_40_40.png"
-                
+
                 titles.append(title)
                 prices.append(price)
                 ratings.append(rating)
                 images.append(image)
                 links.append("https://www.flipkart.com" + link)
-                logos.append(logo)  
-        
+                logos.append(logo)
+
         else:
             for product in products:
                 title = product.find('div', {
@@ -154,8 +159,8 @@ def flipkartResults(query, sort_by):
                 ratings.append(rating)
                 images.append(image)
                 links.append("https://www.flipkart.com" + link)
-                logos.append(logo)   
-            
+                logos.append(logo)
+
     results = zip(titles, prices, images, links, ratings, logos)
 
     return results
@@ -172,9 +177,7 @@ def amazonResults(query, sort_by):
     if query:
         url = 'https://www.amazon.in/s?k=' + query + "&s=" + sort_by
         headers = {
-            'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-        }
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36'}
         response = requests.get(url, headers=headers)
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -201,7 +204,7 @@ def amazonResults(query, sort_by):
                     'class':
                     'a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal'
                 })
-            
+
             if (product.find('span', {'class': 'a-price-whole'})):
                 price = product.find('span', {
                     'class': 'a-price-whole'
